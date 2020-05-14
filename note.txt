@@ -1,0 +1,32 @@
+npm is a tool for handle dependence
+1. cd folder npm init 
+2. npm install webpack --save-dev
+3. npm install jquery --save
+*. add dependence: npm install
+4. sudo npm install live-server --global
+
+webpack
+function: make bundle for assets, script, images
+1. create webpack.config.js:
+    mode -> production is optimziation
+2. npm install webpack-cli --web-dev
+3. change package.json <script_name>
+2. npm run <script_name>
+
+function: auto-refresh
+1. npm install webpack-dev-server --save-dev
+2. add devServer in webpack config
+
+src for development -> bundle -> dist for production
+
+Babel
+function: It's a complier
+1. npm install babel-core babel-preset-env babel-loader 
+2. add module,rule in side plugins in webpack.config
+3. create config for polyfill .babelrc
+3. npm install babel-polyfill --save
+
+MVC!
+
+1. using axios instead of fetch
+
