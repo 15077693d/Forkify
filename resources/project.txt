@@ -1,0 +1,46 @@
+User Story 
+1. [search by recipe name] by insert name and click 
+2. [list a lot of recipe]
+3. click the recipe item for display recipe item
+5. [change recipe item info by servings]
+6. [save the recipe item on local storage] by click heart
+7. [remove the recipe item on local storage] by click heart
+7. [add shopping item on list] by click button
+8. [remove shopping item on list] by click button
+
+models
+1. search -> search by recipe name
+
+foodName*
+---
+getRecipes
+
+
+2. recipe -> change recipe item info by servings
+        -> save the recipe item
+        -> remove the recipe item
+id*
+recipe
+ingredients\
+---
+saveRecipe
+deleteRecipe
+modifyIngredient
+getRecipe
+
+
+2.5 ingredient -> preprocess ingredient
+
+ingredient*
+---
+preprocessIngredients -> {}
+
+
+3. shoppingList ->  add shopping item
+                    remove shopping item
+
+list = []
+---
+addItem
+removeItem
+       

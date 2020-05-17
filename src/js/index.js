@@ -1,20 +1,14 @@
-// import string from './models/Search'
-// //import {add as a, multiply as m, ID} from './views/searchView'
-// import * as searchView from './views/searchView'
+import {ShoppingList} from './models/ShoppingList'
+import {Recipe} from './models/Recipe'
+// 35477
 
-// console.log(searchView.add(searchView.ID,100))
+let recipe1 = new Recipe()
 
-
-async function getMeals(food){
-    try {
-        const data = await fetch(`https://forkify-api.herokuapp.com/api/search?q=${food}`)
-        let item = await data.json()
-        console.log(item)
-        return item
-    } catch(error) {
-        alert(error)
-    }
-}
-
-getMeals("pizza")
-console.log("123")
+recipe1.init("35477").then(recipe => {
+    // get ingredient
+    let recipe_ = recipe.getRecipe()
+    console.log(recipe_)
+    ShoppingList.addItem(recipe_.ingredients[0])
+    ShoppingList.modifyItem(1,10)
+    ShoppingList.deleteItem(2)
+})

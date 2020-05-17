@@ -1,0 +1,66 @@
+@startuml test
+' 1. search -> search by recipe name
+
+' foodName*
+' ---
+' getRecipes
+package "models"{
+    class DataProcessor {
+        + String foodName
+        + Object[] getRecipes() 
+        + Object getRecipes()
+    }
+
+' 2. recipe -> change recipe item info by servings
+'           -> save the recipe item
+'           -> remove the recipe item
+' id*
+' recipe
+' ingredients\
+' ---
+' saveRecipe
+' deleteRecipe
+' modifyIngredient
+' getRecipe
+    class Recipe {
+        + Integer rid
+        + DataProcessor dataProcessor
+        + IngredientProcessor ingredientProcessor
+        + Object recipe 
+        + Object[] ingredients
+        + void init()
+        + void saveRecipe()
+        + void deleteRecipe()
+        + Object modifyIngredient()
+        + Object getRecipe()
+    }
+' 2.5 ingredient -> preprocess ingredient
+
+' ingredient*
+' ---
+' preprocessIngredients -> {}
+    class IngredientProcessor {
+        + String stringIngredient
+        + Object getIngredients()
+    }
+' 3. shoppingList ->  add shopping item
+'                 ->  remove shopping item
+
+' list = []
+' ---
+' addItem
+' removeItem
+    class ShoppingList {
+        + Object[] list
+        + void addItem()
+        + void deleteItem()
+        + void modifyItem()
+    }
+}
+
+
+       
+Recipe ..|> DataProcessor
+Recipe ..|> IngredientProcessor
+@enduml
+
