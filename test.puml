@@ -1,4 +1,7 @@
 @startuml test
+
+
+
 ' 1. search -> search by recipe name
 
 ' foodName*
@@ -7,26 +10,26 @@
 package "models"{
     class DataProcessor {
         + String foodName
-        + Object[] getRecipes() 
+        + Object[] getRecipes()
         + Object getRecipes()
     }
 
-' 2. recipe -> change recipe item info by servings
-'           -> save the recipe item
-'           -> remove the recipe item
-' id*
-' recipe
-' ingredients\
-' ---
-' saveRecipe
-' deleteRecipe
-' modifyIngredient
-' getRecipe
-    class Recipe {
+    ' 2. recipe -> change recipe item info by servings
+    '           -> save the recipe item
+    '           -> remove the recipe item
+    ' id*
+    ' recipe
+    ' ingredients\
+    ' ---
+    ' saveRecipe
+    ' deleteRecipe
+    ' modifyIngredient
+    ' getRecipe
+    class RecipeController {
         + Integer rid
         + DataProcessor dataProcessor
         + IngredientProcessor ingredientProcessor
-        + Object recipe 
+        + Object recipe
         + Object[] ingredients
         + void init()
         + void saveRecipe()
@@ -34,24 +37,23 @@ package "models"{
         + Object modifyIngredient()
         + Object getRecipe()
     }
-' 2.5 ingredient -> preprocess ingredient
+    ' 2.5 ingredient -> preprocess ingredient
 
-' ingredient*
-' ---
-' preprocessIngredients -> {}
+    ' ingredient*
+    ' ---
+    ' preprocessIngredients -> {}
     class IngredientProcessor {
         + String stringIngredient
         + Object getIngredients()
     }
-' 3. shoppingList ->  add shopping item
-'                 ->  remove shopping item
+    ' 3. shoppingList ->  add shopping item
+    '                 ->  remove shopping item
 
-' list = []
-' ---
-' addItem
-' removeItem
-    class ShoppingList {
-        + Object[] list
+    ' list = []
+    ' ---
+    ' addItem
+    ' removeItem
+    class ShoppingListController {
         + void addItem()
         + void deleteItem()
         + void modifyItem()
@@ -59,8 +61,8 @@ package "models"{
 }
 
 
-       
-Recipe ..|> DataProcessor
-Recipe ..|> IngredientProcessor
+
+RecipeController ..|> DataProcessor
+RecipeController ..|> IngredientProcessor
 @enduml
 

@@ -1,14 +1,17 @@
-import {ShoppingList} from './models/ShoppingList'
-import {Recipe} from './models/Recipe'
+import {ShoppingListController} from './models/ShoppingListController'
+import {RecipeController} from './models/RecipeController'
 // 35477
 
-let recipe1 = new Recipe()
+let recipeController1 = new RecipeController()
 
-recipe1.init("35477").then(recipe => {
+recipeController1.init("35477").then(recipeController2 => {
+    // add recipe
+    recipeController2.saveRecipe()
     // get ingredient
-    let recipe_ = recipe.getRecipe()
-    console.log(recipe_)
-    ShoppingList.addItem(recipe_.ingredients[0])
-    ShoppingList.modifyItem(1,10)
-    ShoppingList.deleteItem(2)
+    let recipe = recipeController2.getRecipe()
+    console.log(recipe.ingredients[0])
+
+    ShoppingListController.addItem(recipe.ingredients[0])
+    ShoppingListController.modifyItem(1,10)
+    ShoppingListController.deleteItem(2)
 })
