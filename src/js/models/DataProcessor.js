@@ -1,7 +1,7 @@
 export class DataProcessor{
 
     async getRecipes(foodName) {
-       const resq = await fetch(`https://forkify-api.herokuapp.com/api/search?q=${this.foodName}`)
+       const resq = await fetch(`https://forkify-api.herokuapp.com/api/search?q=${foodName}`)
        const data = await resq.json()
        const recipes = await data.recipes
        return recipes
@@ -14,3 +14,4 @@ export class DataProcessor{
     }
 
 }
+

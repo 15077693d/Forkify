@@ -1,3 +1,4 @@
+var Fraction = require('fractional').Fraction
 // IngredientProcessor 
 const indexOfChar = (char,string) => {
     let indexs = []
@@ -28,12 +29,11 @@ const txt2Number = txt => {
         return txt2Number(txt.split("-")[0])
     }
     if (/\d+\/\d+/.test(txt)){
-         let nums = txt.split("/")
-    return nums[0]/nums[1]
+    return new Fraction(txt)
     }
    
     if (/^-{0,1}\d+$/.test(txt)){
-        return parseFloat(txt)
+        return new Fraction(txt)
     }
 
     return txt
