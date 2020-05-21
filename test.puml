@@ -1,5 +1,36 @@
 @startuml test
 
+' 1. search
+' 2. click recipe, next page (result area)
+' 3. add to shopping list, like, change servings(recipe area)
+' 4. check like, click liked recipe (love area)
+' 5. change value of list, remove shopping list (list area)
+class AppController{
+    + Object DOMString
+    + ResultUIController resultUIController
+    + RecipeUIController recipeUIController 
+    + ShoppingListUIController shoppingListUIController
+    + LikeUIController likeUIController
+    + DataProcessor dataProcessor
+    + RecipeController recipeController
+    + ShoppingListController shoppingListController
+    
+    ' init
+    + void init()
+
+    
+    'result area
+    + void searchRecipe(foodName)
+    'recipe area
+    + void selectRecipe(rid)
+    + addShoppingList(ingredients)
+    'love area
+    + void likeRecipe(rid)
+    'list area
+    + void addIngredient(ingredient)
+    + void deleteIngredient(id)
+}
+
 package "views"{
     ' 1. display list of searched result
         ' <li>
@@ -147,9 +178,8 @@ package "views"{
         ' </li>
      class ShoppingListUIController{
          + Object element
-         + void deleteItem(id)
-
-
+         + void addItem(Object ingredient)
+         + void deleteItem(String id)
      }
      ' 4. display liked recipes
     '  <li>
@@ -164,7 +194,8 @@ package "views"{
     '     </a>
     ' </li>
      class LikeUIController{
-         
+         Object element
+         void displayLikedRecipes(Object[] recipes)
      }
 
 }
@@ -179,8 +210,8 @@ package "views"{
 package "models"{
     class DataProcessor {
         + String foodName
-        + Object[] getRecipes()
-        + Object getRecipes()
+        + Object[] getRecipes(String foodName)
+        + Object getRecipes(Integer rid)
     }
 
     ' 2. recipe -> change recipe item info by servings
@@ -200,10 +231,11 @@ package "models"{
         + IngredientProcessor ingredientProcessor
         + Object recipe
         + Object[] ingredients
-        + void init()
+        + void init(Integer rid)
         + void saveRecipe()
-        + void deleteRecipe()
-        + Object modifyIngredient()
+        + void deleteRecipe(Integer rid)
+        + Object modifyIngredient(Integer newServings)
+        + Object getLikedRecipes()
         + Object getRecipe()
     }
     ' 2.5 ingredient -> preprocess ingredient
@@ -212,8 +244,9 @@ package "models"{
     ' ---
     ' preprocessIngredients -> {}
     class IngredientProcessor {
-        + String stringIngredient
-        + Object getIngredients()
+        + Object units 
+        + Array useless
+        + Object getIngredients(Object ingredientData)
     }
     ' 3. shoppingList ->  add shopping item
     '                 ->  remove shopping item
@@ -223,15 +256,21 @@ package "models"{
     ' addItem
     ' removeItem
     class ShoppingListController {
-        + void addItem()
-        + void deleteItem()
-        + void modifyItem()
+        + void addItem(Object ingredient)
+        + void deleteItem(Integer id)
+        + void modifyItem(Integer id, Integer value)
     }
 }
 
-
-
 RecipeController ..|> DataProcessor
 RecipeController ..|> IngredientProcessor
+AppController -> DataProcessor
+AppController -> RecipeController
+AppController -> ShoppingListController
+AppController -> ResultUIController
+AppController -> RecipeUIController
+AppController -> ShoppingListUIController
+AppController -> LikeUIController
+
 @enduml
 

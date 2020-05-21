@@ -11,8 +11,9 @@ export class ShoppingListController {
             let id = list[list.length-1].id + 1
             ingredient.id = id
             list.push(ingredient)
-            localStorage.setItem("Shopping_list", JSON.stringify(list ))
+            localStorage.setItem("Shopping_list", JSON.stringify(list))
         }
+        return ingredient
     }
 
     static deleteItem(id) {

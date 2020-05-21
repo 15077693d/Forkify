@@ -16,8 +16,10 @@ export class IngredientProcessor {
             cup: "cup", pound: "pound", tablespoons: "tbsp", ounces: "ounce",
             teaspoons: "tbsp", cups: "cup", pounds: "pound", tbsp: "tbsp",
             oz: "oz", tsp: "tsp", pound: "pound", kg: "kg", g: "g", jars: "jar", jar: "jar",
-            packages: "pkg", package: "pkg",cloves:'clove'
+            packages: "pkg", package: "pkg",cloves:'clove',whole:"whole"
         }
+
+        this.useless = ["weight","extra"]
     }
 
     getIngredients(ingredientData) {
