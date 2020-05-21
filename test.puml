@@ -23,7 +23,7 @@ class AppController{
     + void searchRecipe(foodName)
     'recipe area
     + void selectRecipe(rid)
-    + addShoppingList(ingredients)
+    + void addShoppingList(ingredients)
     'love area
     + void likeRecipe(rid)
     'list area
