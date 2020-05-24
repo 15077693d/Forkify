@@ -13,22 +13,21 @@ class AppController{
     + LikeUIController likeUIController
     + DataProcessor dataProcessor
     + RecipeController recipeController
-    + ShoppingListController shoppingListController
     
     ' init
     + void init()
 
-    
     'result area
     + void searchRecipe(foodName)
+    + void goPage(num)
     'recipe area
     + void selectRecipe(rid)
     + void addShoppingList(ingredients)
     'love area
     + void likeRecipe(rid)
     'list area
-    + void addIngredient(ingredient)
     + void deleteIngredient(id)
+    + void changeServings(newServings)
 }
 
 package "views"{
@@ -233,7 +232,6 @@ package "models"{
         + Object[] ingredients
         + void init(Integer rid)
         + void saveRecipe()
-        + void deleteRecipe(Integer rid)
         + Object modifyIngredient(Integer newServings)
         + Object getLikedRecipes()
         + Object getRecipe()

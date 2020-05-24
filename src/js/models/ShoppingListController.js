@@ -1,8 +1,12 @@
+var Fraction = require('fractional').Fraction
 export class ShoppingListController {
+    static getList(){
+        return JSON.parse(localStorage.getItem("Shopping_list"))
+    }
     static addItem(ingredient) {
         let data = localStorage.getItem("Shopping_list")
         // list === null -> set item []
-        if (!data) {
+        if (!data | data==='[]') {
             ingredient.id = 0
             localStorage.setItem("Shopping_list", JSON.stringify( [ingredient] ))
         } else {
@@ -28,12 +32,13 @@ export class ShoppingListController {
         // change value
         let newList = list.map(ingredient => {
             if (ingredient.id===id){
-                ingredient.value = value
+                ingredient.value = new Fraction(value)
                 return ingredient
             }else{
                 return ingredient
             }
         })
+        console.log(newList)
         localStorage.setItem("Shopping_list", JSON.stringify(newList))
     }
 }

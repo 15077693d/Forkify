@@ -25,6 +25,7 @@ export class RecipeController {
         return this.dataProcessor.getRecipe(rid).then(
             recipe => {
                 this.recipe = recipe
+                this.baseIngredients = this.ingredientProcessor.getIngredients(this.recipe.ingredients)
                 this.ingredients = this.ingredientProcessor.getIngredients(this.recipe.ingredients)
                 this.recipe.ingredients = JSON.parse(JSON.stringify(this.ingredients))
                 this.recipe.minutes = this.minutes
@@ -48,8 +49,14 @@ export class RecipeController {
             localStorage.setItem("recipes", JSON.stringify([info]))
         } else {
             let data = JSON.parse(recipes)
-            // add rid
+            if (data.map(info_ => info_.recipe_id).includes(info.recipe_id)){
+                // delete rid
+                data = data.filter(info_ => info_.recipe_id !== info.recipe_id)
+                console.log(data)
+            } else{
+                // add rid
             data.push(info)
+            }
             localStorage.setItem("recipes", JSON.stringify(data))
         }
     }
@@ -66,12 +73,13 @@ export class RecipeController {
     modifyIngredient(newServings) {
         // new value * multiplier
         let multiplier = new Fraction(newServings).divide(new Fraction(this.servings))
-        let outputIngredients = JSON.parse(JSON.stringify(this.ingredients))
+        let outputIngredients = JSON.parse(JSON.stringify(this.baseIngredients))
         outputIngredients.forEach(ingredient => {
             ingredient["value"] = new Fraction(ingredient["value"].numerator,ingredient["value"].denominator)
             ingredient["value"] = ingredient["value"].multiply(multiplier)
             ingredient["value"] = ingredient["value"]
         })
+        this.ingredients = outputIngredients
         return JSON.parse(JSON.stringify(outputIngredients))
     }
 

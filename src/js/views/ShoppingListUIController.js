@@ -2,16 +2,16 @@ export class ShoppingListUIController {
     constructor() {
         this.element = document.getElementsByClassName("shopping__list")[0]
     }
-
+    
     addItem(ingredient) {
-        ingredient.value = ingredient.value.numerator / ingredient.value.denominator
+        let value = ingredient.value.numerator / ingredient.value.denominator
         // step
         // 0.68 -> 0.69,0.70
         // 0.01
         // 100 -> 101,102
         // 001
         let step = ""
-        let flag = ingredient.value.toString()
+        let flag = value.toString()
         for (let i = 0; i < flag.length; i++) {
             if (i===(flag.length-1)){
                 step+=1
@@ -28,7 +28,7 @@ export class ShoppingListUIController {
                 break
             }
         }
-        const extraHTML = `<li id="shopping_${ingredient.id}"class="shopping__item"><div class="shopping__count"><input type="number" value="${ingredient.value}" step="${step}"><p>${ingredient.unit}</p></div><p class="shopping__description">${ingredient.item}</p><button class="shopping__delete btn-tiny"><svg><use href="img/icons.svg#icon-circle-with-cross"></use></svg></button></li>`
+        const extraHTML = `<li id="shopping_${ingredient.id}"class="shopping__item"><div class="shopping__count"><input type="number" value="${value}" step="${step}"><p>${ingredient.unit}</p></div><p class="shopping__description">${ingredient.item}</p><button class="shopping__delete btn-tiny"><svg><use href="img/icons.svg#icon-circle-with-cross"></use></svg></button></li>`
         this.element.innerHTML += extraHTML
     }
 

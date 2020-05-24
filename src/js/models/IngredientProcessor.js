@@ -16,10 +16,10 @@ export class IngredientProcessor {
             cup: "cup", pound: "pound", tablespoons: "tbsp", ounces: "ounce",
             teaspoons: "tbsp", cups: "cup", pounds: "pound", tbsp: "tbsp",
             oz: "oz", tsp: "tsp", pound: "pound", kg: "kg", g: "g", jars: "jar", jar: "jar",
-            packages: "pkg", package: "pkg",cloves:'clove',whole:"whole"
+            packages: "pkg", package: "pkg", cloves: 'clove', whole: "whole"
         }
 
-        this.useless = ["weight","extra"]
+        this.useless = ["weight", "extra"]
     }
 
     getIngredients(ingredientData) {
@@ -50,8 +50,12 @@ export class IngredientProcessor {
 
             step2List.forEach(item => {
                 if (item.constructor.name === "Fraction") { sum = sum.add(item) }
-                else if (Object.keys(this.units).includes(item.match(/\w+/)[0].toLowerCase())) {step3Object["unit"] = this.units[item.match(/\w+/)[0].toLowerCase()] }
-                else { step3Object.item.push(item) }
+                else if (/\w+/.test(item)) {
+                    if (Object.keys(this.units).includes(item.match(/\w+/)[0].toLowerCase())) {
+                        step3Object["unit"] = this.units[item.match(/\w+/)[0].toLowerCase()]
+                    }
+                    else { step3Object.item.push(item) }
+                }
             })
             step3Object["value"] = sum
             let itemStr = ""
