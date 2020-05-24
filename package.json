@@ -20,7 +20,7 @@
     "heroku-prebuild": "npm install --dev",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --open"
+    "start": "webpack --mode development --open"
   },
   "author": "Oscar Yiu",
   "license": "ISC"
