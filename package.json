@@ -17,11 +17,13 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "dev-server": "webpack-dev-server --open",
-    "start": "node server.js",
-    "build": "webpack -p",
-    "heroku-postbuild": "npm run build"
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "node dist/js/bundle.js"
   },
   "author": "Oscar Yiu",
-  "license": "ISC"
+  "license": "ISC",
+  "engine": {
+    "node": "v12.16.3"
+  }
 }
