@@ -64,7 +64,11 @@ class AppController {
     //             RecipeUIController1.displayRecipe()
 
     selectRecipe(rid) {
-        this.resultUIController.activateResult(rid)
+        try{
+            this.resultUIController.activateResult(rid)
+        }catch(err){
+            
+        }
         this.recipeController.init(rid).then(recipeController => {
             // model
             let recipe = recipeController.getRecipe()

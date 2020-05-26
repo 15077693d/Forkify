@@ -17,12 +17,15 @@ export class ResultUIController {
         // get all results__link item
         let elements = document.getElementsByClassName("results__link")
         elements = Array.from(elements)
-        // get passive result
+        try{
+             // get passive result
         let passiveElement = elements.filter(
             element => element.getAttribute("class") === ("results__link results__link--active")
         )[0]
         passiveElement.setAttribute("class", "results__link")
         // get active result
+        }catch(err){}
+       
         let activeElement = elements.filter(
             element => element.getAttribute("href") === ("#" + rid)
         )[0]
