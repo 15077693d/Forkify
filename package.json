@@ -19,7 +19,8 @@
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "node dist/js/bundle.js"
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p"
   },
   "author": "Oscar Yiu",
   "license": "ISC",
