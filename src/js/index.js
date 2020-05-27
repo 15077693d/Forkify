@@ -155,7 +155,9 @@ const setUpListener = (appController) => {
                 newServings = parseInt(document.querySelector(".recipe__info-data--people").textContent)
                 newServings+=1
             }
-            appController.changeServings(parseInt(newServings))
+            if (parseInt(newServings)>0){
+                appController.changeServings(parseInt(newServings))
+            }
         }
     })
     // like
