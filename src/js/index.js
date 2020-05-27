@@ -124,8 +124,12 @@ let appController = new AppController()
 const setUpListener = (appController) => {
     // search
     document.querySelector(appController.DOMString.search).addEventListener("click", function () {
-        let foodName = document.querySelector('.search__field').value
-        appController.searchRecipe(foodName)
+        try{
+            let foodName = document.querySelector('.search__field').value
+            appController.searchRecipe(foodName)
+        }catch(err){
+
+        }
     })
     // result
     document.querySelector(appController.DOMString.result).addEventListener("click", function (event) {
